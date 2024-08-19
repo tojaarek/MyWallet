@@ -1,9 +1,9 @@
-import styled from 'styled-components'
-import { devices } from '../../constants/breakpoints'
-import RegisterSvg from '../../assets/RegisterPage/hero-register.svg'
-import LoginSvg from '../../assets/LoginPage/hero-login.svg'
-import BackgroundPinkSvg from '../../assets/shared/test.png'
-import BackgroundPurple from '../../assets/shared/background-purple.png'
+import styled from 'styled-components';
+import { devices } from '../../constants/breakpoints';
+import RegisterSvg from '../../assets/RegisterPage/hero-register.svg';
+import LoginSvg from '../../assets/LoginPage/hero-login.svg';
+import BackgroundPinkSvg from '../../assets/shared/test.png';
+import BackgroundPurple from '../../assets/shared/background-purple.png';
 
 export const Section = styled.section`
   width: 100%;
@@ -30,13 +30,13 @@ export const Section = styled.section`
       );
     align-items: center;
   }
-`
+`;
 
 export const Container = styled.div`
   width: 100%;
-  padding: 0 20px;
+  padding: 0 1.25rem;
   @media only screen and ${devices.tablet} {
-    padding: 60px 0;
+    padding: 3.75rem 0;
   }
   @media only screen and ${devices.desktop} {
     padding: 0;
@@ -44,7 +44,7 @@ export const Container = styled.div`
     display: grid;
     grid-template-columns: 550px 730px;
   }
-`
+`;
 
 export const ImageWrapper = styled.div`
   display: none;
@@ -52,13 +52,13 @@ export const ImageWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 50px;
+    margin-bottom: 3.125rem;
   }
   @media only screen and ${devices.desktop} {
     flex-direction: column;
     margin-bottom: 0;
   }
-`
+`;
 
 export const FormWrapper = styled.div`
   @media only screen and ${devices.tablet} {
@@ -69,7 +69,7 @@ export const FormWrapper = styled.div`
   @media only screen and ${devices.desktop} {
     width: 100%;
   }
-`
+`;
 
 export const HeroRegister = styled(RegisterSvg)`
   @media only screen and ${devices.tablet} {
@@ -77,11 +77,11 @@ export const HeroRegister = styled(RegisterSvg)`
   }
 
   @media only screen and ${devices.desktop} {
-    margin-bottom: 28px;
+    margin-bottom: 1.75rem;
     width: 435px;
     height: 420px;
   }
-`
+`;
 
 export const HeroLogin = styled(LoginSvg)`
   @media only screen and ${devices.tablet} {
@@ -89,20 +89,20 @@ export const HeroLogin = styled(LoginSvg)`
   }
 
   @media only screen and ${devices.desktop} {
-    margin-bottom: 28px;
+    margin-bottom: 1.75rem;
     width: 435px;
     height: 420px;
   }
-`
+`;
 
 export const Title = styled.h1`
   @media only screen and ${devices.tablet} {
-    font-size: 30px;
+    font-size: 1.87rem;
     font-family: 'Poppins';
     font-weight: 400;
-    margin-left: 50px;
+    margin-left: 3.125rem;
   }
   @media only screen and ${devices.desktop} {
     margin-left: 0;
   }
-`
+`;

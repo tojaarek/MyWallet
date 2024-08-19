@@ -1,5 +1,5 @@
-import ButtonColor from '../shared/ButtonColor/ButtonColor'
-import ButtonTransparent from '../shared/ButtonTransparent/ButtonTransparent'
+import ButtonColor from '../ButtonColor/ButtonColor';
+import ButtonTransparent from '../ButtonTransparent/ButtonTransparent';
 import {
   Form,
   InputWrapper,
@@ -8,26 +8,79 @@ import {
   Wrapper,
   EmailIcon,
   LockIcon,
-} from '../AuthForms/AuthForms.styled'
+  ErrorMessage,
+} from '../AuthForms/AuthForms.styled';
+import { useFormik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import loginSchema from '../../validators/login.schema';
+import { login } from '../../redux/actions/users.actions';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: loginSchema,
+    onSubmit: (values) => {
+      const { email, password } = values;
+      const loginData = {
+        email,
+        password,
+      };
+      dispatch(login(loginData));
+    },
+  });
+
   return (
     <Wrapper>
-      <Form name="loginForm" autoComplete="off">
+      <Form name="loginForm" autoComplete="off" onSubmit={formik.handleSubmit}>
         <Logo />
         <InputWrapper>
-          <Input name="email" placeholder="Email" required />
-          <EmailIcon />
+          <Input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+            $isValid={!formik.touched.email || !formik.errors.email}
+          />
+          {formik.touched.email && formik.errors.email && (
+            <ErrorMessage>{formik.errors.email}</ErrorMessage>
+          )}
+          <EmailIcon $isValid={!formik.touched.email || !formik.errors.email} />
         </InputWrapper>
         <InputWrapper>
-          <Input name="password" placeholder="Password" required />
-          <LockIcon />
+          <Input
+            type="password"
+            name="password"
+            placeholder="Password"
+            maxLength="30"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
+            $isValid={!formik.touched.password || !formik.errors.password}
+          />
+          {formik.touched.password && formik.errors.password && (
+            <ErrorMessage>{formik.errors.password}</ErrorMessage>
+          )}
+          <LockIcon
+            $isValid={!formik.touched.password || !formik.errors.password}
+          />
         </InputWrapper>
-        <ButtonColor text="log in" />
+        <ButtonColor type="submit" text="log in" />
       </Form>
-      <ButtonTransparent text="register" />
+      <ButtonTransparent
+        isLink={true}
+        to="/register"
+        type="button"
+        text="register"
+      />
     </Wrapper>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;
